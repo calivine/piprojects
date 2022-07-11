@@ -11,7 +11,7 @@ camera.capture('foo.jpg')
 
 sleep(2)
 
-camera.start_recording('foovid.mp4', 'h264')
+camera.start_recording('foovid.h264')
 
 camera.wait_recording(5)
 
