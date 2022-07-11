@@ -4,6 +4,7 @@ from picamera import PiCamera
 camera = PiCamera(resolution=(1024, 768))
 # camera.resolution = (1024, 768)
 camera.rotation = 180
+camera.annotate_text = 'Foo'
 camera.start_preview()
 # Camera warm-up time
 sleep(2)
