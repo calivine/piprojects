@@ -17,6 +17,6 @@ while True:
     if result.is_valid():
         print(strftime("%A, %d %B %Y, %X", localtime()))
         print("Temp: %d%s F" % (result.temperature, chr(1)))
-        print("Temp. {%d}{%s}F".format(result.temperature, chr(176)))
+        print("Temp. {}{}F".format(result.temperature, chr(176)))
         print("Humidity: %d %%" % result.humidity)
     sleep(30)
