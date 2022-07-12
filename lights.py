@@ -4,7 +4,7 @@ from led import Led
 
 red = Led(4)
 
-green = Led(5)
+green = Led(17)
 
 while True:
     red.turn_on()
