@@ -37,7 +37,6 @@ def standby():
 def recording():
     green.turn_off()
     red.turn_on()
-    print(pir.value)
     camera.capture()
     sleep(1)
 
@@ -47,9 +46,8 @@ pir.when_motion = recording
 pir.when_no_motion = standby
 
 while True:
-    green.turn_on()
+    print("Waiting for motion")
     pir.wait_for_motion()
-
-    # print("Motion detected!")
+    print("Motion detected!")
 
     # camera.capture(strftime("%A-%d-%B-%Y_%X.jpg", localtime()))
