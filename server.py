@@ -5,13 +5,15 @@ import sys
 # Start a socket listening for connections on 0.0.0.0:8000 (0.0.0.0 means
 # all interfaces)
 server_socket = socket.socket()
-server_socket.bind(('', 8000))
-server_socket.listen(0)
+server_socket.bind(('0.0.0.0', 8000))
+server_socket.listen(1)
 
 print('Created server socket')
 
 # Accept a single connection and make a file-like object out of it
 connection = server_socket.accept()[0].makefile('rb')
+
+# print("Got a connection from {}".format(str(addr)))
 try:
     # Run a viewer with an appropriate command line. Uncomment the mplayer
     # version if you would prefer to use mplayer instead of VLC
@@ -21,7 +23,6 @@ try:
     while True:
         # Repeatedly read 1k of data from the connection and write it to
         # the media player's stdin
-        print('Listening')
         data = connection.read(1024)
         if not data:
             break
