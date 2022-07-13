@@ -11,6 +11,10 @@ from led import Led
 def sigint_handler(signal, frame):
     print('KeyboardInterrupt is caught')
     camera.camera.close()
+    if red.light.is_lit():
+        red.turn_off()
+    elif green.light.is_lit():
+        green.turn_off()
     sys.exit()
 
 
@@ -43,6 +47,7 @@ pir.when_motion = recording
 pir.when_no_motion = standby
 
 while True:
+    green.turn_on()
     pir.wait_for_motion()
 
     # print("Motion detected!")
