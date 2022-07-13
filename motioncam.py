@@ -1,9 +1,21 @@
 import sys
 from time import sleep, localtime, strftime
+import signal
+
 from picamera import PiCamera
 from gpiozero import MotionSensor
 from camera import Camera
 from led import Led
+
+
+def sigint_handler(signal, frame):
+    print('KeyboardInterrupt is caught')
+    camera.camera.close()
+    sys.exit()
+
+
+signal.signal(signal.SIGINT, sigint_handler)
+
 
 pir = MotionSensor(27)
 red = Led(4)
@@ -14,6 +26,7 @@ green = Led(17)
 #camera.rotation = 180
 
 camera = Camera()
+
 
 def standby():
     green.turn_on()
