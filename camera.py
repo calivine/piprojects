@@ -9,5 +9,5 @@ class Camera:
         self.camera.rotation = 180
 
     def capture(self):
-        self.camera.capture(strftime("%A-%d-%B-%Y_%f.jpg", localtime()))
+        self.camera.capture(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
 

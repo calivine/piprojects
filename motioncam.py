@@ -1,3 +1,4 @@
+import sys
 from time import sleep, localtime, strftime
 from picamera import PiCamera
 from gpiozero import MotionSensor
@@ -13,7 +14,6 @@ green = Led(17)
 #camera.rotation = 180
 
 camera = Camera()
-green.turn_on()
 
 def standby():
     green.turn_on()
@@ -31,7 +31,11 @@ pir.when_motion = recording
 pir.when_no_motion = standby
 
 while True:
-    pir.wait_for_motion()
+    try:
+        pir.wait_for_motion()
+    except KeyboardInterrupt:
+        camera.camera.close()
+        sys.exit()
 
     # print("Motion detected!")
 
