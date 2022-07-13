@@ -44,11 +44,7 @@ pir.when_motion = recording
 pir.when_no_motion = standby
 
 while True:
-    try:
-        pir.wait_for_motion()
-    except KeyboardInterrupt:
-        camera.camera.close()
-        sys.exit()
+    pir.wait_for_motion()
 
     # print("Motion detected!")
 
