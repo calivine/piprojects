@@ -27,7 +27,7 @@ def recording():
 
 pir.when_motion = recording
 
-pir.when_not_motion = standby
+pir.when_no_motion = standby
 
 while True:
     pir.wait_for_motion()
