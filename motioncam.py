@@ -16,14 +16,11 @@ def sigint_handler(signal, frame):
 
 signal.signal(signal.SIGINT, sigint_handler)
 
-
+# Pins being used
 pir = MotionSensor(27)
 red = Led(4)
 green = Led(17)
 
-#camera = PiCamera(resolution=(1024, 768))
-
-#camera.rotation = 180
 
 camera = Camera()
 
