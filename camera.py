@@ -10,4 +10,4 @@ class Camera:
 
     def capture(self):
         self.camera.capture(strftime("%A-%d-%B-%Y_%f.jpg", localtime()))
-        self.camera.close()
+

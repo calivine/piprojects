@@ -13,6 +13,7 @@ green = Led(17)
 #camera.rotation = 180
 
 camera = Camera()
+green.turn_on()
 
 def standby():
     green.turn_on()
