@@ -2,8 +2,11 @@ from time import sleep, localtime, strftime
 from picamera import PiCamera
 from gpiozero import MotionSensor
 from camera import Camera
+from led import Led
 
-pir = MotionSensor(4)
+pir = MotionSensor(27)
+red = Led(4)
+green = Led(17)
 
 #camera = PiCamera(resolution=(1024, 768))
 
@@ -11,8 +14,20 @@ pir = MotionSensor(4)
 
 camera = Camera()
 
-pir.when_motion = camera.capture()
+def standby():
+    green.turn_on()
+    red.turn_off()
 
+
+def recording():
+    green.turn_off()
+    red.turn_on()
+    camera.capture()
+    sleep(2)
+
+pir.when_motion = recording
+
+pir.when_not_motion = standby
 
 while True:
     pir.wait_for_motion()
