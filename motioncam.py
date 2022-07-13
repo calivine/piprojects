@@ -36,8 +36,10 @@ def standby():
 def recording():
     green.turn_off()
     red.turn_on()
+    print(pir.value)
     camera.capture()
-    sleep(2)
+    sleep(1)
+
 
 pir.when_motion = recording
 
