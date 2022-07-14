@@ -10,17 +10,21 @@ client_socket = socket.socket()
 client_socket.connect(('192.168.0.141', 8000))
 
 # Make a file-like object out of the connection
-connection = client_socket.makefile('wb')
+#connection = client_socket.makefile('wb')
+camera = picamera.PiCamera()
+stream = picamera.PiCameraCircularIO(camera, seconds=20)
+
 try:
-    camera = picamera.PiCamera()
+
     camera.resolution = (640, 480)
     camera.framerate = 24
+    camera.rotation = 180
     # Start a preview and let the camera warm up for 2 seconds
     camera.start_preview()
     time.sleep(2)
     # Start recording, sending the output to the connection for 60
     # seconds, then stop
-    camera.start_recording(connection, format='h264')
+    camera.start_recording(stream, format='h264')
     camera.wait_recording(60)
     camera.stop_recording()
 finally:
