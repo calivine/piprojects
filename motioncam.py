@@ -35,6 +35,7 @@ def standby():
 
 
 def recording():
+    print("recording")
     green.turn_off()
     red.turn_on()
     camera.capture()
