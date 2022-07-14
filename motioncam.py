@@ -34,17 +34,9 @@ pir.when_motion = recording
 pir.when_no_motion = standby
 
 while True:
-    try:
-        print("1 Waiting for motion")
-        pir.wait_for_motion()
-        sleep(8)
-    finally:
-        print("Closing")
-        camera.camera.close()
-        if red.light.is_lit():
-            red.turn_off()
-        elif green.light.is_lit():
-            green.turn_off()
+    print("1 Waiting for motion")
+    pir.wait_for_motion()
+    sleep(8)
 
 
 
