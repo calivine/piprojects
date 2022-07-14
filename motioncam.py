@@ -1,5 +1,5 @@
 import sys
-from time import sleep
+from time import sleep,strftime,localtime
 
 from gpiozero import MotionSensor
 from camera import Camera
@@ -11,7 +11,7 @@ red = Led(4)
 green = Led(17)
 
 
-camera = Camera()
+camera = Camera(resolution=(640, 480))
 
 
 def standby():
@@ -25,6 +25,7 @@ def recording():
     green.turn_off()
     red.turn_on()
     camera.capture()
+    camera.record(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
     sleep(2)
 
 
@@ -36,7 +37,7 @@ while True:
     try:
         print("1 Waiting for motion")
         pir.wait_for_motion()
-        sleep(3)
+        sleep(8)
     finally:
         print("Closing")
         camera.camera.close()
