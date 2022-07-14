@@ -1,24 +1,9 @@
 import sys
-from time import sleep, localtime, strftime
-import signal
+from time import sleep
 
-from picamera import PiCamera
 from gpiozero import MotionSensor
 from camera import Camera
 from led import Led
-
-
-def sigint_handler(signal, frame):
-    print('KeyboardInterrupt is caught')
-    camera.camera.close()
-    if red.light.is_lit():
-        red.turn_off()
-    elif green.light.is_lit():
-        green.turn_off()
-    sys.exit()
-
-
-signal.signal(signal.SIGINT, sigint_handler)
 
 # Pins being used
 pir = MotionSensor(27)
@@ -48,10 +33,18 @@ pir.when_motion = recording
 pir.when_no_motion = standby
 
 while True:
-    print("1 Waiting for motion")
-    pir.wait_for_motion()
-    print("4 Motion detected!")
-    sleep(2)
+    try:
+        print("1 Waiting for motion")
+        pir.wait_for_motion()
+        sleep(3)
+    finally:
+        print("Closing")
+        camera.camera.close()
+        if red.light.is_lit():
+            red.turn_off()
+        elif green.light.is_lit():
+            green.turn_off()
+
 
 
     # camera.capture(strftime("%A-%d-%B-%Y_%X.jpg", localtime()))
