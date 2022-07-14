@@ -30,16 +30,17 @@ camera = Camera()
 
 
 def standby():
+    print("3 standby")
     green.turn_on()
     red.turn_off()
 
 
 def recording():
-    print("recording")
+    print("2 recording")
     green.turn_off()
     red.turn_on()
     camera.capture()
-    sleep(1)
+    sleep(2)
 
 
 pir.when_motion = recording
@@ -47,9 +48,10 @@ pir.when_motion = recording
 pir.when_no_motion = standby
 
 while True:
-    print("Waiting for motion")
+    print("1 Waiting for motion")
     pir.wait_for_motion()
+    print("4 Motion detected!")
     sleep(2)
-    print("Motion detected!")
+
 
     # camera.capture(strftime("%A-%d-%B-%Y_%X.jpg", localtime()))
