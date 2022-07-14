@@ -25,7 +25,7 @@ def recording():
     green.turn_off()
     red.turn_on()
     camera.capture()
-    camera.record(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
+    camera.record(strftime("%A-%d-%B-%Y_%H_%M_%S", localtime()))
     sleep(2)
 
 
