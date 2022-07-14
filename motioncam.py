@@ -33,6 +33,8 @@ pir.when_motion = recording
 
 pir.when_no_motion = standby
 
+green.turn_on()
+
 while True:
     print("1 Waiting for motion")
     pir.wait_for_motion()
