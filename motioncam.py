@@ -49,6 +49,7 @@ pir.when_no_motion = standby
 while True:
     print("Waiting for motion")
     pir.wait_for_motion()
+    sleep(2)
     print("Motion detected!")
 
     # camera.capture(strftime("%A-%d-%B-%Y_%X.jpg", localtime()))
