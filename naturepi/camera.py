@@ -12,9 +12,19 @@ class Camera:
     def capture(self):
         self.camera.capture(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
 
-    def record(self, output, duration=5):
+    def capture_timelapse(self, time=300):
+        for filename in self.camera.capture_continuous('image{timestamp:%H-%M-%S-%f}.jpg'):
+            print('Captured %s' % filename)
+            # wait time defaults to 5 minutes
+            sleep(time)
+
+    def record(self, output, duration=5, streaming=False):
         self.camera.start_recording("{}.h264".format(output), format='h264')
+        if streaming:
+            self.camera.start_recording("{}_stream.h264".format(output), splitter_port=2, format='h264')
         self.camera.wait_recording(duration)
+        if streaming:
+            self.camera.stop_recording(splitter_port=2)
         self.camera.stop_recording()
 
 
