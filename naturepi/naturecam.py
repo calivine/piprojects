@@ -1,8 +1,8 @@
 from time import sleep,strftime,localtime
 
 from gpiozero import MotionSensor
-from ..camera import Camera
-from ..led import Led
+from camera import Camera
+from led import Led
 
 
 class NatureCam:
