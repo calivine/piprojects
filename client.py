@@ -19,7 +19,7 @@ try:
     camera.framerate = 24
     camera.rotation = 180
     # Start a preview and let the camera warm up for 2 seconds
-    camera.start_preview()
+    # camera.start_preview()
     time.sleep(2)
     # Start recording, sending the output to the connection for 60
     # seconds, then stop
