@@ -1,3 +1,4 @@
+from signal import pause
 from time import sleep,strftime,localtime
 
 from gpiozero import MotionSensor
@@ -30,7 +31,9 @@ class NatureCam:
         sleep(2)
 
     def activate(self):
-        while True:
-            print("1 Waiting for motion")
-            self.pir.wait_for_motion()
-            sleep(8)
+        pause()
+        #while True:
+        #    print("1 Waiting for motion")
+        #    self.pir.wait_for_motion()
+        #    sleep(8)
+
