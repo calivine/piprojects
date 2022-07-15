@@ -1,6 +1,5 @@
 import sys
 
-from camera import Camera
 from naturecam import NatureCam
 
 
