@@ -1,6 +1,6 @@
 import sys
 
-from .naturecam import NatureCam
+from naturecam import NatureCam
 
 
 def _real_main():

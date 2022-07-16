@@ -33,15 +33,16 @@ class Camera:
 
     def stream(self, connection, client):
         self.camera.start_recording(connection, format='h264')
-        while True:
-            try:
+
+        try:
+            while True:
                 self.camera.wait_recording(1)
-            except KeyboardInterrupt:
-                pass
-            finally:
-                self.camera.stop_recording()
-                client.close()
-                connection.close()
+        except KeyboardInterrupt:
+            pass
+        finally:
+            self.camera.stop_recording()
+            client.close()
+            connection.close()
 
 
 
