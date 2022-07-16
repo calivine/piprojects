@@ -22,6 +22,7 @@ class Camera:
         #self.camera.framerate = 24
         #self.camera.resolution = (640, 480)
         # sleep(1)
+        self.camera.annotate_text(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
         self.camera.start_recording("{}.h264".format(output), splitter_port=2, format='h264')
         self.camera.wait_recording(10)
         if streaming:
@@ -32,11 +33,13 @@ class Camera:
         self.camera.stop_recording(splitter_port=2)
 
     def stream(self, connection, client):
+        self.camera.annotate_text(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
         self.camera.start_recording(connection, format='h264')
 
         try:
             while True:
-                self.camera.wait_recording(1)
+                self.camera.annotate_text(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
+                self.camera.wait_recording(.2)
         except KeyboardInterrupt:
             pass
         finally:
