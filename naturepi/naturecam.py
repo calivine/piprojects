@@ -2,8 +2,9 @@ from signal import pause
 from time import sleep,strftime,localtime
 
 from gpiozero import MotionSensor
-from camera import Camera
+from naturepi.camera import Camera
 from led import Led
+from naturepi.client import ClientHTTP
 
 
 class NatureCam:
@@ -40,9 +41,15 @@ class NatureCam:
         #    self.pir.wait_for_motion()
         #    sleep(8)
 
-    def start_streaming(self):
+    def start_recording(self):
         sleep(3)
         self.camera.record(strftime("%A-%d-%B-%Y_%H_%M_%S", localtime()), 60, True)
 
-        self.camera.start_recording()
+    def start_streaming(self):
+        client_socket = ClientHTTP()
+        connection = client_socket.start('192.168.0.141')
+        self.camera.stream(connection,client_socket)
+
+
+
 

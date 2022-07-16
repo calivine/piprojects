@@ -31,6 +31,20 @@ class Camera:
             self.camera.stop_recording(splitter_port=2)
         self.camera.stop_recording()
 
+    def stream(self, connection, client):
+        self.camera.start_recording(connection, format='h264')
+        while True:
+            try:
+                self.camera.wait_recording(1)
+            except KeyboardInterrupt:
+                pass
+            finally:
+                self.camera.stop_recording()
+                client.close()
+                connection.close()
+
+
+
 
 
 
