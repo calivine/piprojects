@@ -31,7 +31,10 @@ class NatureCam:
         sleep(2)
 
     def activate(self):
-        pause()
+        self.red.turn_on()
+        self.start_streaming()
+        self.red.turn_off()
+        #pause()
         #while True:
         #    print("1 Waiting for motion")
         #    self.pir.wait_for_motion()
