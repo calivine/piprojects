@@ -2,9 +2,9 @@ from signal import pause
 from time import sleep,strftime,localtime
 
 from gpiozero import MotionSensor
-from naturepi.camera import Camera
-from led import Led
-from naturepi.client import ClientHTTP
+from .camera import Camera
+from .led import Led
+from .client import ClientHTTP
 
 
 class NatureCam:
