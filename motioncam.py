@@ -9,8 +9,6 @@ from led import Led
 pir = MotionSensor(27)
 red = Led(4)
 green = Led(17)
-
-
 camera = Camera(resolution=(640, 480))
 
 

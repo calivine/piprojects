@@ -37,7 +37,6 @@ class NatureCam:
         #    self.pir.wait_for_motion()
         #    sleep(8)
 
-
     def start_streaming(self):
         sleep(3)
         self.camera.record(strftime("%A-%d-%B-%Y_%H_%M_%S", localtime()), 60, True)
