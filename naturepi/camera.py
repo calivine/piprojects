@@ -22,14 +22,14 @@ class Camera:
         self.camera.framerate = 24
         self.camera.resolution = (640, 480)
         sleep(1)
-        self.camera.start_recording("{}.h264".format(output), format='h264')
+        self.camera.start_recording("{}.h264".format(output), splitter_port=2, format='h264')
         self.camera.wait_recording(10)
         if streaming:
             self.camera.start_recording("{}_stream.h264".format(output), splitter_port=2, format='h264')
         self.camera.wait_recording(duration)
         if streaming:
             self.camera.stop_recording(splitter_port=2)
-        self.camera.stop_recording()
+        self.camera.stop_recording(splitter_port=2)
 
     def stream(self, connection, client):
         self.camera.start_recording(connection, format='h264')

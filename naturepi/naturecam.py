@@ -14,8 +14,8 @@ class NatureCam:
         self.red = Led(4)
         self.green = Led(17)
         self.camera = Camera(resolution=(640, 480))
-        #self.pir.when_motion = self._recording
-        #self.pir.when_no_motion = self._standby
+        self.pir.when_motion = self._recording
+        self.pir.when_no_motion = self._standby
         #self.green.turn_on()
 
     def _standby(self):
