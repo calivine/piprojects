@@ -44,3 +44,5 @@ class NatureCam:
         sleep(3)
         self.camera.record(strftime("%A-%d-%B-%Y_%H_%M_%S", localtime()), 60, True)
 
+        self.camera.start_recording()
+

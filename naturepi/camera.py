@@ -23,6 +23,7 @@ class Camera:
         self.camera.resolution = (640, 480)
         sleep(1)
         self.camera.start_recording("{}.h264".format(output), format='h264')
+        self.camera.wait_recording(10)
         if streaming:
             self.camera.start_recording("{}_stream.h264".format(output), splitter_port=2, format='h264')
         self.camera.wait_recording(duration)
