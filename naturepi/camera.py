@@ -40,7 +40,7 @@ class Camera:
         try:
             while True:
                 self.camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                self.camera.wait_recording(0.041)
+                self.camera.wait_recording(1)
         except KeyboardInterrupt:
             pass
         finally:
