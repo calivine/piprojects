@@ -23,7 +23,7 @@ class Camera:
         #self.camera.framerate = 24
         #self.camera.resolution = (640, 480)
         # sleep(1)
-        self.camera.annotate_text(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
+        self.camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
         self.camera.start_recording("{}.h264".format(output), splitter_port=2, format='h264')
         self.camera.wait_recording(10)
         if streaming:
