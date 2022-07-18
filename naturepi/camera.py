@@ -1,4 +1,5 @@
 from time import sleep, localtime, strftime
+import datetime as dt
 
 from picamera import PiCamera
 
@@ -33,12 +34,12 @@ class Camera:
         self.camera.stop_recording(splitter_port=2)
 
     def stream(self, connection, client):
-        self.camera.annotate_text(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
+        self.camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.camera.start_recording(connection, format='h264')
 
         try:
             while True:
-                self.camera.annotate_text(strftime("%A-%d-%B-%Y_%H_%M_%S.jpg", localtime()))
+                self.camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 self.camera.wait_recording(.2)
         except KeyboardInterrupt:
             pass
