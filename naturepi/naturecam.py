@@ -13,6 +13,7 @@ class NatureCam:
         self.pir = MotionSensor(27)
         self.red = Led(4)
         self.green = Led(17)
+        print('Starting camera.')
         self.camera = Camera(resolution=(640, 480))
         self.pir.when_motion = self._recording
         self.pir.when_no_motion = self._standby

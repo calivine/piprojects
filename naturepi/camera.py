@@ -44,8 +44,11 @@ class Camera:
         except KeyboardInterrupt:
             pass
         finally:
+            print('Shutting down camera.')
             self.camera.stop_recording()
+            print('Shutting down client.')
             client.close()
+            print('Shutting down server connection.')
             connection.close()
 
 
