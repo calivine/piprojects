@@ -34,7 +34,7 @@ class Camera:
             self.camera.stop_recording(splitter_port=2)
         self.camera.stop_recording(splitter_port=2)
         # FFmpeg to convert video to .mkv
-        subprocess.Popen(['ffmpeg', '-i', '{}.h264', '{}.mkv'], shell=False)
+        subprocess.Popen(['ffmpeg', '-i', '{}.h264'.format(output), '{}.mkv'.format(output)], shell=False)
 
     def stream(self, connection, client):
         self.camera.annotate_text = self._timestamp('%Y-%m-%d %H:%M:%S')
