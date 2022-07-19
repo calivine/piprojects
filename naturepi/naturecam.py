@@ -49,7 +49,7 @@ class NatureCam:
     def start_streaming(self):
         client_socket = ClientHTTP()
         connection = client_socket.start('192.168.0.141')
-        self.camera.stream(connection,client_socket)
+        self.camera.stream(connection, client_socket)
 
 
 

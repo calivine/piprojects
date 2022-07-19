@@ -1,5 +1,6 @@
 from time import sleep, localtime, strftime
 import datetime as dt
+import subprocess
 
 from picamera import PiCamera
 
@@ -23,7 +24,7 @@ class Camera:
         #self.camera.framerate = 24
         #self.camera.resolution = (640, 480)
         # sleep(1)
-        self.camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
+        self.camera.annotate_text = self._timestamp()
         self.camera.start_recording("{}.h264".format(output), splitter_port=2, format='h264')
         self.camera.wait_recording(10)
         if streaming:
@@ -32,14 +33,16 @@ class Camera:
         if streaming:
             self.camera.stop_recording(splitter_port=2)
         self.camera.stop_recording(splitter_port=2)
+        # FFmpeg to convert video to .mkv
+        subprocess.run(['ffmpeg', '-i', '{}.h264', '{}.mkv'])
 
     def stream(self, connection, client):
-        self.camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.camera.annotate_text = self._timestamp('%Y-%m-%d %H:%M:%S')
         self.camera.start_recording(connection, format='h264')
 
         try:
             while True:
-                self.camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                self.camera.annotate_text = self._timestamp('%Y-%m-%d %H:%M:%S')
                 self.camera.wait_recording(0.3)
         except KeyboardInterrupt:
             pass
@@ -50,6 +53,9 @@ class Camera:
             client.close()
             print('Shutting down server connection.')
             connection.close()
+
+    def _timestamp(self, timecodes='%Y-%m-%d_%H_%M_%S'):
+        return dt.datetime.now().strftime(timecodes)
 
 
 
