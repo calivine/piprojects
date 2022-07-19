@@ -9,10 +9,11 @@ from client import ClientHTTP
 
 class NatureCam:
 
-    def __init__(self):
+    def __init__(self, lights=False):
         self.pir = MotionSensor(27)
-        self.red = Led(4)
-        self.green = Led(17)
+        if lights:
+            self.red = Led(4)
+            self.green = Led(17)
         print('Starting camera.')
         self.camera = Camera(resolution=(640, 480))
         self.pir.when_motion = self._recording
@@ -21,21 +22,24 @@ class NatureCam:
 
     def _standby(self):
         print("3 standby")
-        self.green.turn_on()
-        self.red.turn_off()
+        if hasattr(self, 'red'):
+            self.green.turn_on()
+            self.red.turn_off()
 
     def _recording(self):
         print("2 recording")
-        self.green.turn_off()
-        self.red.turn_on()
         self.camera.capture()
         self.camera.record(strftime("%A-%d-%B-%Y_%H_%M_%S", localtime()))
         sleep(2)
 
     def activate(self):
-        self.red.turn_on()
+        if hasattr(self, 'red'):
+            self.red.turn_on()
+
         self.start_streaming()
-        self.red.turn_off()
+        if hasattr(self, 'red'):
+            self.red.turn_off()
+
         #pause()
         #while True:
         #    print("1 Waiting for motion")
