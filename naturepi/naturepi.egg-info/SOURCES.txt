@@ -1,0 +1,7 @@
+setup.py
+naturepi.egg-info/PKG-INFO
+naturepi.egg-info/SOURCES.txt
+naturepi.egg-info/dependency_links.txt
+naturepi.egg-info/entry_points.txt
+naturepi.egg-info/requires.txt
+naturepi.egg-info/top_level.txt

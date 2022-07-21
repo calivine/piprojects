@@ -1,4 +1,3 @@
-from signal import pause
 from time import sleep,strftime,localtime
 
 from gpiozero import MotionSensor
