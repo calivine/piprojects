@@ -1,3 +1,0 @@
-[console_scripts]
-naturepi = naturepi.cli:main
-
