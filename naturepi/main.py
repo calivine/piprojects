@@ -1,6 +1,6 @@
 import sys
 
-from naturepi.naturecam import NatureCam
+from naturecam import NatureCam
 
 
 def _real_main(argv=None):
